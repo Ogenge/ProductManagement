@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ProductManagement",
+    "\\ProductManagement\\ProductManagement\\ClientApp\\src",
+    "\\ProductManagement\\ProductManagement\\ClientApp\\src\\app",
+    "\\ProductManagement\\ProductManagement\\ClientApp\\src\\app\\nav-menu",
+    "\\ProductManagement\\ProductManagement\\ClientApp\\src\\app\\product"
   ],
+  "SelectedNode": "\\ProductManagement\\ProductManagement.sln",
   "PreviewInSolutionExplorer": false
 }

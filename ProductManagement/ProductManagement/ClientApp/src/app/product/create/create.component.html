@@ -1,1 +1,68 @@
-<p>create works!</p>
+<div class="container">
+  <br />
+  <div class="row">
+    <div class="col">
+      <h3>Create Product</h3>
+    </div>
+    <div class="col text-right">
+      <a href="#" routerLink="/product/list" class="btn btn-secondary btn-sm">Back To Products List</a>
+    </div>
+  </div>
+  <br />
+  <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm)">
+
+    <div class="form-group">
+      <label for="Name">Name:</label>
+      <input formControlName="name"
+             id="name"
+             type="text"
+             class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="Category">Category:</label>
+      <select formControlName="category"
+              id="category"
+              class="form-control">
+        <option value="">- Select -</option>
+        <option *ngFor="let category of categories" [ngValue]="category.id">
+          {{category.name}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="Size">Size:</label>
+      <select formControlName="size"
+              id="size"
+              class="form-control">
+        <option value="">- Select -</option>
+        <option *ngFor="let size of sizes" [ngValue]="size.id">
+          {{size.name}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="Color">Color:</label>
+      <select formControlName="color"
+              id="color"
+              class="form-control">
+        <option value="">- Select -</option>
+        <option *ngFor="let color of colors" [ngValue]="color.id">
+          {{color.name}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="Price">Price:</label>
+      <input formControlName="price"
+             id="price"
+             type="number"
+             class="form-control" />
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="!createForm.valid">Create</button>
+  </form>
+</div>
