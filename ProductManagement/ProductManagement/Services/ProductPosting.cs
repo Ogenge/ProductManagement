@@ -1,6 +1,8 @@
 ﻿using ProductManagement.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,9 +10,25 @@ namespace ProductManagement
 {
     public class ProductPosting
     {
-        public Task<List<Product>> GetProducts()
+        public async Task<List<Product>> GetProducts()
         {
-            throw new NotImplementedException();
+            List<Product> prod = new List<Product>();
+            using (SqlConnection connection = new SqlConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "vw_Products";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Connection = connection;
+                    connection.Open();
+                    var reader=cmd.ExecuteReaderAsync().Result;
+                    while (reader.Read())
+                    {
+                        prod = reader;
+                    }
+                }
+            }
+            return prod;
         }
 
         public Task<GenericModel> PostProduct(Product model)
@@ -18,9 +36,26 @@ namespace ProductManagement
             throw new NotImplementedException();
         }
 
-        public Task<List<Product>> GetProductsByCategory(int id)
+        public async Task<List<Product>> GetProductsByCategory(int id)
         {
-            throw new NotImplementedException();
+            List<Product> prod = new List<Product>();
+            using (SqlConnection connection = new SqlConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "vw_Products";
+                    cmd.Parameters.AddWithValue("sku", SqlDbType.Int).Value = id;
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Connection = connection;
+                    connection.Open();
+                    var reader = cmd.ExecuteReaderAsync().Result;
+                    while (reader.Read())
+                    {
+                        prod = reader;
+                    }
+                }
+            }
+            return prod;
         }
 
         public Task<GenericModel> UpdateProduct(Product model)
